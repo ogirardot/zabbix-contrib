@@ -1,0 +1,26 @@
+Django==1.4.2
+South==0.7.6
+akismet==0.2.0
+distribute==0.6.29
+django-crispy-forms==1.2.0
+django-debug-toolbar==0.9.4
+-e git://github.com/edoburu/django-fluent-comments.git@45354652fcc7f4ec91c409b1b0229839c57116db#egg=django_fluent_comments-dev
+django-forms-bootstrap==2.0.3.post1
+django-social-auth==0.7.10
+django-tastypie==0.9.11
+gondor==1.1.5
+httplib2==0.7.7
+ipython==0.13.1
+mimeparse==0.1.3
+oauth2==1.5.211
+pinax-theme-bootstrap==2.2.1
+python-dateutil==1.5
+python-openid==2.2.5
+pyzmq==2.2.0.1
+readline==6.2.4
+stevedore==0.4
+tornado==2.4
+virtualenv==1.8.2
+virtualenv-clone==0.2.4
+virtualenvwrapper==3.6
+wsgiref==0.1.2

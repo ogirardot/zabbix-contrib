@@ -1,0 +1,27 @@
+<div>
+  <span><a href="{{ obj.get_absolute_url }}"><strong>{{ obj.title }}</strong></a> terminé le {{ obj.closed_at }}</span>
+  <blockquote>
+    <p>{{ obj.description|linebreaksbr|fix_ampersands|urlize }}</p>
+    <small>créé par <a href="{% url author_detail obj.user.pk %}">{{ obj.user }}</a> le {{ obj.created_at }}.</small>
+  </blockquote>
+  <div class="download">
+  	{% if obj.document %}
+  	<strong>Document uploadé :</strong> <a href="{{ MEDIA_URL }}/{{ obj.document.url }}" target="_blank">{{ obj.document.name }}</a> ({{ obj.document.file.size|filesizeformat }})
+    {% if obj.document.desc %}<div class="desc">{{ obj.document.desc }}</div>{% endif %}
+    {% else %}
+    Pas de documents associés
+    {% endif %}
+  </div>
+  {% if obj.parent %}
+  <span>Cette proposition est une contre-proposition à <a href="{{ obj.parent.get_absolute_url}}">"{{obj.title}}"</a></span>
+  {% endif %}
+  {% if obj.offsprings.all %}
+  <div>
+    Cette proposition a engendré les propositions suivantes :
+    <ul>
+      {% for decision in obj.offsprings.all %}
+        <li><a href="{{ decision.get_absolute_url}}">"{{decision.title}}"</a></span></li>
+      {% endfor %}
+  </div>
+  {% endif %}
+</div>

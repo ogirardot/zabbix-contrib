@@ -3,14 +3,19 @@ from django.contrib.auth.models import User
 from django.contrib import admin
 
 from frontend.models import Contribution
+from frontend.forms import ContributionForm
 
 admin.autodiscover()
 
-urlpatterns += patterns('frontend.views',
-    url(r'^$', login_required(index), name='home'),
-    url(r'^about/?$', 'about', name='about'),
-    url(r'^logout/?$', 'index', name='logout'),
+urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
+    url(r'', include('social_auth.urls')),
+    url(r'^accounts/', include('accounts.urls')),
+)
+
+urlpatterns += patterns('frontend.views',
+    url(r'^$', 'index', name='home'),
+    url(r'^about/?$', 'about', name='about'),
 )
 
 # generic views
@@ -19,10 +24,7 @@ contrib_info_dict = {
 }
 contrib_cinfo_dict = {
   'form_class': ContributionForm,
-  'login_required': True,
-}
-author_info_dict = {
-    'queryset': User.objects.all(),
+  'login_required': False,
 }
 
 from django.views.generic.list_detail import object_list, object_detail
@@ -40,9 +42,4 @@ urlpatterns += patterns('',
         object_detail,
         contrib_info_dict,
         name="contrib_detail"),
-    # author part :
-    url(r'^author/(?P<object_id>\d+)/$',
-        object_detail,
-        author_info_dict,
-        name="author_detail"),
 )

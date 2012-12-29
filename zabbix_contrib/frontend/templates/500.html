@@ -1,6 +1,6 @@
+{% load i18n %}
 {% extends "base.html" %}
 {% block content %}
-<h1>Une erreur a eu lieu</h1>
-<p>Cette erreur peut arriver si vous avez essayé de vous connectez sans utiliser votre compte Lateral-Thoughts.
-Sinon veuillez nous contacter à contact (at) lateral-thoughts.com.</p>
+<h1>{% trans "Oops ! Something wrong happened" %}</h1>
+<p>{% blocktrans %}Something broke on the server, we've been notified and will do something about it quickly. If it happens again don't hesitate to contact us{% endblocktrans %}</p>
 {% endblock %}

@@ -1,32 +1,33 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block nav_home %}class="active"{% endblock %}
 {% block content %}
   <div class="hero-unit">
-    <h1>Bienvenue sur l'Agora</h1>
-    <p>Cette plateforme vous permet d'avoir accès aux décisions collègialement prises au sein de LT.
+    <h1>{% trans "Welcome to Zabbix-contrib" %}</h1>
+    <p>{% trans "This plateform is designed to let you :" %}
       <ul>
-        <li>Voir les décisions prises et archivées;</li>
-        <li>Voter pour les décisions en cours d'arbitrage;</li>
-        <li>Faire de nouvelles propositions à la communauté;</li>
+        <li>{% trans "Find and share Zabbix UserParams plugin for any projet you like" %};</li>
+        <li>{% trans "Register and upload any extension you might have made" %};</li>
+        <li>{% trans "Share with the world which extensions you use and prefer" %};</li>
       </ul></p>
-    <p><a href="{% url decision_list %}"class="btn btn-primary btn-large">Voir les décisions à trancher</a></p>
+    <p><a href="{% url contrib_list %}"class="btn btn-primary btn-large">{% trans "See all the extensions" %}</a></p>
   </div>
 
     <div class="row">
       <div class="span6">
-        <h2>A voter</h2>
-        <p>{% for decision in in_progress %}
-          {% include 'agora/inc_decision_detail.html' with obj=decision only %}
+        <h2>{% trans "Latest contributions" %}</h2>
+        <p>{% for contrib in latest_contribs %}
+          {% include 'frontend/inc_contribution_shortdetail.html' with obj=contrib only %}
           {% endfor %}</p>
-        <p><a class="btn" href="{% url decision_list %}">Voir plus &raquo;</a></p>
+        <p><a class="btn" href="{% url contrib_list %}">{% trans "See more" %} &raquo;</a></p>
       </div>
       <div class="span6">
-        <h2>Archivées</h2>
-        <p>{% for decision in closed %}
-          {% include 'agora/inc_decision_detail.html' with obj=decision only %}
+        <h2>{% trans "Popular contributions" %}</h2>
+        <p>{% for contrib in popular_contribs %}
+          {% include 'frontend/inc_contribution_shortdetail.html' with obj=contrib only %}
           {% endfor %}</p>
-        <p><a class="btn" href="{% url decision_list %}">Voir plus &raquo;</a></p>
-     </div>
+        <p><a class="btn" href="{% url contrib_list %}">{% trans "See more" %} &raquo;</a></p>
+      </div>
     </div>
 
 {% endblock %}

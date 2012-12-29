@@ -1,0 +1,15 @@
+{% load i18n %}
+<div>
+  <span><a href="{{ obj.get_absolute_url }}"><strong>{{ obj.name }}</strong></a> for {{ obj.products }}</span>
+  <blockquote>
+    <p>{{ obj.description|linebreaksbr|fix_ampersands|truncatewords_html:10|urlize }}</p>
+    <small>created by <a href="#">{{ obj.author }}</a> on the {{ obj.created_at }}.</small>
+  </blockquote>
+  <div class="download">
+  	{% if obj.document %}
+  	<strong>{% trans "Uploaded file " %}:</strong> <a href="{{ MEDIA_URL }}/{{ obj.document.url }}" target="_blank">{{ obj.document.name }}</a> ({{ obj.document.file.size|filesizeformat }})
+    {% else %}
+    
+    {% endif %}
+  </div>
+</div>

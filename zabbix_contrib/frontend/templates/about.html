@@ -1,7 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block nav_about %}class="active"{% endblock %}
 {% block content %}
-<h1>Qu'est ce que c'est</h1>
-<p>Agora est l'endroit permettant d'avoir la mémoire des décisions prises collègialement.
-	Son but est de servir de référence pour savoir quelle décisions ont été prises, quand, et d'en proposer de nouvelles ou de les amender.</p>
+<h1>{% trans "What is this place ?!" %}</h1>
+<p>{% blocktrans %}Zabbix-Contrib is a community driven exchange place where you can search and submit for free any Zabbix UserParam plugin for any tools you're monitoring on a daily basis.{% endblocktrans %}</p>
 {% endblock %}

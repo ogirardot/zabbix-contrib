@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block nav_propc %}class="active"{% endblock %}
+
+{% block content %}
+<h1>{% trans "Submit a contribution" %}</h1>
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" name="create" class="btn" value="Submit">
+</form>
+{% endblock %}

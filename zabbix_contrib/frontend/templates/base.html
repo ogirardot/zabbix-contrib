@@ -1,11 +1,11 @@
+{% load i18n %}
 <html>
   <head>
-    <title>Lateral Thoughts - Agora</title>
+    <title>Zabbix Contrib</title>
     <!-- Bootstrap -->
     <link href="{{ STATIC_URL|default:"/site_media/static/" }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Project -->
     <link href="{{ STATIC_URL|default:"/site_media/static/" }}main/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL|default:"/site_media/static/" }}fluent_comments/css/ajaxcomments.css" />
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -23,25 +23,26 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="{% url home %}">LT-Agora</a>
+          <a class="brand" href="{% url home %}">Zabbix-contrib</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li {% block nav_home %}{% endblock %}><a href="{% url home %}">Page d'accueil</a></li>
-              <li {% block nav_prop %}{% endblock %}><a href="{% url decision_list %}">Propositions</a></li>
-              <li {% block nav_propc %}{% endblock %}><a href="{% url decision_create %}">Soumettre une proposition</a></li>
-              <li {% block nav_about %}{% endblock %}><a href="{% url about %}">A propos</a></li>
+              <li {% block nav_home %}{% endblock %}><a href="{% url home %}">{% trans "Home" %}</a></li>
+              <li {% block nav_prop %}{% endblock %}><a href="{% url contrib_list %}">{% trans "Contributions" %}</a></li>
+              <li {% block nav_propc %}{% endblock %}><a href="{% url contrib_create %}">{% trans "Submit a new contrib" %}</a></li>
+              <li {% block nav_about %}{% endblock %}><a href="{% url about %}">{% trans "About" %}</a></li>
             </ul>
-
+{% comment %}
             <ul class="nav pull-right">
               {% if user.is_authenticated %}
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ user.email }}<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <a href="{% url auth_logout %}">Déconnexion</a>
+                <a href="{% url auth_logout %}">{% trans "Logout" %}</a>
               </ul>
               {% else %}
-              <a href="{% url socialauth_begin 'google-oauth2' %}" class="btn">Connectez-vous</a>
+              <a href="{% url socialauth_begin 'google-oauth2' %}" class="btn">{% trans "Sign In" %}</a>
               {% endif %}
             </ul>
+{% endcomment %}
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -49,25 +50,21 @@
     {% endblock %}
     <div class="{% block content_class %}container{% endblock %}">
       {% block content %} {% endblock %}
-
       <hr>
-
       <footer>
-        <p>&copy; Lateral-Thoughts 2012</p>
+        <p>created for <a href="http://www.zabbix.com">Zabbix</a> community by <a href="http://www.readtfb.net">Olivier Girardot</a> 2012</p>
       </footer>
-
     </div> <!-- /container -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="{{ STATIC_URL|default:"/site_media/static/" }}bootstrap/js/bootstrap.min.js"></script>
     <!-- Project -->
     <script src="{{ STATIC_URL|default:"/site_media/static/" }}main/js/application.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL|default:"/site_media/static/" }}fluent_comments/js/ajaxcomments.js"></script>
     {% block extra_js %}{% endblock %}
     <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36571883-1']);
+  _gaq.push(['_setAccount', '']);
   _gaq.push(['_trackPageview']);
 
   (function() {

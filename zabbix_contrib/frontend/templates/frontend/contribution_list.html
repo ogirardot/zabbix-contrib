@@ -17,9 +17,9 @@
         <tr>
             <td><a href="{{ contrib.get_absolute_url }}">{{ contrib.pk }}</a></td>
             <td><a href="{{ contrib.get_absolute_url }}">{{ contrib.name }}</a></td>
-            <td>{{ contrib.created_at }}</td>
-            <td>{{ contrib.user }}</td>
-            <td></td>
+            <td>{{ contrib.product }}</td>
+            <td>{{ contrib.plateform }}</td>
+            <td>{{ contrib.zabbix }}</td>
         </tr>
         {% endfor %}
     </tbody>
